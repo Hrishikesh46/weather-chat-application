@@ -171,17 +171,6 @@ export const ThreadSidebar = ({ isOpen, onToggle }) => {
                   {/* Thread Actions */}
                   <div className="flex gap-1 ml-2">
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        exportThread(thread.id);
-                      }}
-                      className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-200 rounded"
-                      title="Export thread"
-                    >
-                      <Download className="w-3 h-3" />
-                    </button>
-
-                    <button
                       onClick={(e) => handleDeleteThread(thread.id, e)}
                       className={`p-1 rounded transition-colors ${
                         showDeleteConfirm === thread.id
