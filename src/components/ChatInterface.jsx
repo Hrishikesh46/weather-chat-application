@@ -13,12 +13,10 @@ export const ChatInterface = () => {
     activeMessages,
     activeThreadId,
     isLoading,
-    isStreaming,
     error,
     sendMessage,
     clearThread,
     exportThread,
-    createThread,
     threadList,
     updateThreadTitle,
   } = useChat();

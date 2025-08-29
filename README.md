@@ -1,57 +1,92 @@
-Weather Agent Chat Interface
+# Weather Agent Chat Interface
+
 A modern, responsive chat application that connects to a weather agent API for real-time weather information. Built with React, Vite, and Tailwind CSS, featuring streaming responses and multi-thread conversation management.
 
-🌟 Features
-Core Functionality
-Real-time Chat Interface - Interactive messaging with weather agent
+# 🔗 Links
 
-Streaming API Responses - Live text streaming as the AI responds
+- 🌐 Live Demo: https://weather-chat-application.vercel.app/
+- 📂 Repository: https://github.com/Hrishikesh46/weather-chat-application
 
-Multi-thread Management - Create and manage multiple chat conversations
+# 🌟 Features
 
-Smart Message Formatting - Automatic spacing fixes for weather data
+# ⚡ Core Functionality
 
-Export Functionality - Download chat history as JSON files
+- Real-time Chat Interface - Interactive messaging with weather agent
+- Streaming API Responses - Live text streaming as the AI responds
+- Multi-thread Management - Create and manage multiple chat conversations
+- Smart Message Formatting - Automatic spacing fixes and proper line breaks
+- Conversation History - Persistent chat threads during session
 
-UI/UX Excellence
-Responsive Design - Mobile-first approach, works on all devices (min-width: 320px)
+# 🎨 UI/UX
 
-Thread Management - Sidebar with thread switching and search
+- Responsive Design - Mobile-first approach, works on all devices
+- Thread Management - Sidebar with thread switching and search functionality
+- Editable Thread Titles - Click to edit conversation names inline
+- Auto-scroll - Automatic scrolling to latest messages
+- Loading States - Comprehensive loading indicators and animations
+- Error Handling - Robust error handling with user feedback
+- Clean Interface - Modern design with smooth animations
 
-Editable Thread Titles - Click to edit conversation names
+# 🔧 Technical Features
 
-Auto-scroll - Automatic scrolling to latest messages
+- Context-based State Management - React Context API for global state
+- Custom Hooks - Reusable logic for chat management
+- Real-time Streaming - Server-sent events for live response updates
 
-Loading States - Comprehensive loading indicators and animations
+# 🚀 Tech Stack
 
-Error Handling - Robust error handling with user feedback
+- Frontend Framework: React 18 with JavaScript
+- Build Tool: Vite
+- Styling: Tailwind CSS v4
+- Icons: Lucide React
+- Date Handling: date-fns
+- State Management: React Context API + useReducer
+- HTTP Client: Fetch API with streaming support
 
-Technical Features
-Context-based State Management - React Context API for global state
+# 📦 Installation
 
-Custom Hooks - Reusable logic for chat, theme, and localStorage
+- Prerequisites
 
-Accessibility - ARIA labels, keyboard navigation support
-
-Performance Optimized - Efficient re-rendering and state updates
-
-🚀 Tech Stack
-Frontend Framework: React 18 with JavaScript
-
-Build Tool: Vite
-
-Styling: Tailwind CSS v4
-
-Icons: Lucide React
-
-Date Handling: date-fns
-
-State Management: React Context API + useReducer
-
-Storage: localStorage for persistence
-
-📦 Installation
-Prerequisites
 Node.js 18 or higher
+npm (comes with Node.js) or yarn
 
-npm or yarn
+# Setup Instructions
+
+- Clone the repository
+
+git clone https://github.com/Hrishikesh46/weather-chat-application.git
+cd weather-chat-application
+
+# Install dependencies
+
+npm install
+
+# or if you prefer yarn
+
+yarn install
+
+# Configure API settings
+
+- Open src/utils/api.js and replace the placeholder with your college roll number:
+
+const COLLEGE_ROLL_NUMBER = 'YOUR_ACTUAL_ROLL_NUMBER';
+
+- Start the development server
+
+npm run dev
+
+# or
+
+yarn dev
+
+- Open your browser
+- Navigate to http://localhost:5173 to see the application running.
+
+- Build for Production
+
+npm run build
+
+# or
+
+yarn build
+The built files will be in the dist directory.
