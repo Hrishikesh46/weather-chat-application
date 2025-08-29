@@ -1,4 +1,3 @@
-// src/contexts/ChatContext.jsx
 import React, {
   createContext,
   useContext,
@@ -9,7 +8,6 @@ import { createWeatherRequest, sendWeatherMessage } from '../utils/api';
 
 const ChatContext = createContext();
 
-// Action types
 const ACTIONS = {
   CREATE_THREAD: 'CREATE_THREAD',
   SET_ACTIVE_THREAD: 'SET_ACTIVE_THREAD',
@@ -34,7 +32,6 @@ const initialState = {
   pendingUserMessage: null,
 };
 
-// Reducer function
 const chatReducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.CREATE_THREAD:
@@ -149,11 +146,9 @@ const chatReducer = (state, action) => {
   }
 };
 
-// Chat Provider Component
 export const ChatProvider = ({ children }) => {
   const [state, dispatch] = useReducer(chatReducer, initialState);
 
-  // Create new thread
   const createThread = useCallback((title = 'New Chat') => {
     const threadId = `thread-${Date.now()}-${Math.random()
       .toString(36)
@@ -165,7 +160,6 @@ export const ChatProvider = ({ children }) => {
     return threadId;
   }, []);
 
-  // Set active thread
   const setActiveThread = useCallback((threadId) => {
     dispatch({
       type: ACTIONS.SET_ACTIVE_THREAD,
@@ -173,7 +167,6 @@ export const ChatProvider = ({ children }) => {
     });
   }, []);
 
-  // Send message
   const sendMessage = useCallback(
     async (content, threadId = state.activeThreadId) => {
       if (!content.trim() || state.isLoading) return;
@@ -188,11 +181,9 @@ export const ChatProvider = ({ children }) => {
       let streamingContent = '';
       let assistantMessageId;
 
-      // If no active thread, store the pending message
       if (!targetThreadId) {
         dispatch({ type: ACTIONS.SET_PENDING_MESSAGE, payload: content });
       } else {
-        // Add user message to existing thread
         const userMessage = {
           id: `user-${Date.now()}`,
           role: 'user',
@@ -221,7 +212,6 @@ export const ChatProvider = ({ children }) => {
       }
 
       try {
-        // Get conversation history
         const conversationHistory = targetThreadId
           ? (state.threads[targetThreadId]?.messages || []).map((msg) => ({
               role: msg.role,
@@ -236,9 +226,7 @@ export const ChatProvider = ({ children }) => {
           (chunk) => {
             streamingContent += chunk;
 
-            // If no thread exists yet, create one with both user and assistant messages
             if (!targetThreadId) {
-              // Generate title from user message
               const title =
                 content.length > 30
                   ? content.substring(0, 30) + '...'
@@ -248,13 +236,11 @@ export const ChatProvider = ({ children }) => {
                 .toString(36)
                 .substr(2, 9)}`;
 
-              // Create the thread
               dispatch({
                 type: ACTIONS.CREATE_THREAD,
                 payload: { id: targetThreadId, title },
               });
 
-              // Add user message
               const userMessage = {
                 id: `user-${Date.now()}`,
                 role: 'user',
@@ -267,7 +253,6 @@ export const ChatProvider = ({ children }) => {
                 payload: { threadId: targetThreadId, message: userMessage },
               });
 
-              // Add assistant message with first chunk
               assistantMessageId = `assistant-${Date.now()}`;
               const assistantMessage = {
                 id: assistantMessageId,
@@ -284,10 +269,8 @@ export const ChatProvider = ({ children }) => {
                 },
               });
 
-              // Clear pending message
               dispatch({ type: ACTIONS.CLEAR_PENDING_MESSAGE });
             } else {
-              // Update existing assistant message
               dispatch({
                 type: ACTIONS.UPDATE_MESSAGE,
                 payload: {
@@ -299,7 +282,6 @@ export const ChatProvider = ({ children }) => {
             }
           },
           () => {
-            // Mark message as complete
             dispatch({
               type: ACTIONS.UPDATE_MESSAGE,
               payload: {
@@ -360,7 +342,6 @@ export const ChatProvider = ({ children }) => {
     });
   }, []);
 
-  // Clear thread
   const clearThread = useCallback(
     (threadId = state.activeThreadId) => {
       if (threadId) {
@@ -370,19 +351,16 @@ export const ChatProvider = ({ children }) => {
     [state.activeThreadId]
   );
 
-  // Delete thread
   const deleteThread = useCallback((threadId) => {
     dispatch({ type: ACTIONS.DELETE_THREAD, payload: threadId });
   }, []);
 
-  // Get active thread messages
   const getActiveMessages = useCallback(() => {
     return state.activeThreadId
       ? state.threads[state.activeThreadId]?.messages || []
       : [];
   }, [state.activeThreadId, state.threads]);
 
-  // Export thread
   const exportThread = useCallback(
     (threadId = state.activeThreadId) => {
       if (!threadId || !state.threads[threadId]) return;
@@ -422,8 +400,6 @@ export const ChatProvider = ({ children }) => {
     isLoading: state.isLoading,
     isStreaming: state.isStreaming,
     error: state.error,
-
-    // Actions
     createThread,
     setActiveThread,
     sendMessage,
@@ -431,8 +407,6 @@ export const ChatProvider = ({ children }) => {
     deleteThread,
     exportThread,
     updateThreadTitle,
-
-    // Computed
     activeMessages: getActiveMessages(),
     threadList: Object.values(state.threads).sort(
       (a, b) => new Date(b.lastActivity) - new Date(a.lastActivity)
@@ -442,7 +416,6 @@ export const ChatProvider = ({ children }) => {
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };
 
-// Custom hook to use chat context
 export const useChat = () => {
   const context = useContext(ChatContext);
   if (!context) {

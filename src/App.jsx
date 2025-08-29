@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import { ChatProvider } from './contexts/ChatContext';
 import { ChatInterface } from './components/ChatInterface';

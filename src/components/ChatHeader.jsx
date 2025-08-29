@@ -1,4 +1,3 @@
-// src/components/ChatHeader.jsx
 import React, { useState } from 'react';
 import { Trash2, Download, MessageCircle, Edit3, Check, X } from 'lucide-react';
 
@@ -79,7 +78,7 @@ export const ChatHeader = ({
               <div className="flex items-center gap-2 min-w-0">
                 <h1
                   className="text-lg font-semibold text-gray-900 truncate min-w-0 flex-1"
-                  title={threadTitle} // Show full title on hover
+                  title={threadTitle}
                 >
                   {threadTitle}
                 </h1>

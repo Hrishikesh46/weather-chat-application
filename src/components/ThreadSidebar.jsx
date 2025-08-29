@@ -1,4 +1,3 @@
-// src/components/ThreadSidebar.jsx
 import React, { useState } from 'react';
 import {
   Plus,
@@ -63,7 +62,6 @@ export const ThreadSidebar = ({ isOpen, onToggle }) => {
 
   return (
     <>
-      {/* Mobile backdrop */}
       {isOpen && (
         <div
           className="fixed inset-0  bg-opacity-50 z-40 md:hidden"

@@ -59,54 +59,45 @@ export const sendWeatherMessage = async (
         const trimmedLine = line.trim();
         if (!trimmedLine) continue;
 
-        console.log('Processing line:', trimmedLine); // Debug log
+        console.log('Processing line:', trimmedLine);
 
-        // Handle text content chunks (0: prefix)
         if (trimmedLine.startsWith('0:')) {
           let content = trimmedLine.slice(2);
 
-          // Remove surrounding quotes if present
           if (content.startsWith('"') && content.endsWith('"')) {
             content = content.slice(1, -1);
           }
 
-          // Only send non-empty content
           if (content && content.trim()) {
-            console.log('Sending chunk:', content); // Debug log
+            console.log('Sending chunk:', content);
             onChunk(content);
           }
-        }
-        // Handle completion (d: prefix indicates final completion)
-        else if (trimmedLine.startsWith('d:')) {
-          console.log('Stream completed with d: prefix'); // Debug log
+        } else if (trimmedLine.startsWith('d:')) {
+          console.log('Stream completed with d: prefix');
           onComplete();
           return;
-        }
-        // Alternative completion check (e: prefix with stop reason)
-        else if (trimmedLine.startsWith('e:')) {
+        } else if (trimmedLine.startsWith('e:')) {
           try {
             const parsed = JSON.parse(trimmedLine.slice(2));
             if (
               parsed.finishReason === 'stop' &&
               parsed.isContinued === false
             ) {
-              console.log('Stream completed with e: prefix'); // Debug log
+              console.log('Stream completed with e: prefix');
               onComplete();
               return;
             }
           } catch (e) {
-            // Continue if parsing fails
             console.log('Failed to parse e: line:', e);
           }
         }
-        // Ignore other prefixes (f:, 9:, a:) as they're metadata
       }
     }
 
-    console.log('Stream ended naturally'); // Debug log
+    console.log('Stream ended naturally');
     onComplete();
   } catch (error) {
-    console.error('Stream error:', error); // Debug log
+    console.error('Stream error:', error);
     onError(error instanceof Error ? error.message : 'Network error occurred');
   }
 };

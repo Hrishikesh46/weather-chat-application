@@ -1,4 +1,3 @@
-// src/hooks/useLocalStorage.js
 import { useState, useEffect, useCallback } from 'react';
 
 export const useLocalStorage = (key, initialValue) => {
@@ -15,20 +14,16 @@ export const useLocalStorage = (key, initialValue) => {
     }
   });
 
-  // Use useCallback to prevent unnecessary re-renders
   const setValue = useCallback(
     (value) => {
       try {
-        // Allow value to be a function so we have the same API as useState
         const valueToStore =
           value instanceof Function ? value(storedValue) : value;
 
-        console.log(`Setting localStorage ${key}:`, valueToStore); // Debug log
+        console.log(`Setting localStorage ${key}:`, valueToStore);
 
-        // Save state
         setStoredValue(valueToStore);
 
-        // Save to localStorage
         if (typeof window !== 'undefined') {
           window.localStorage.setItem(key, JSON.stringify(valueToStore));
         }
@@ -39,7 +34,6 @@ export const useLocalStorage = (key, initialValue) => {
     [key, storedValue]
   );
 
-  // Listen for changes in localStorage
   useEffect(() => {
     const handleStorageChange = (e) => {
       if (e.key === key && e.newValue !== null) {

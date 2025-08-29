@@ -1,4 +1,3 @@
-// src/components/MessageInput.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Loader } from 'lucide-react';
 

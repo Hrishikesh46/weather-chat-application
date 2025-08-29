@@ -1,19 +1,15 @@
-/* src/index.css */
 @import 'tailwindcss';
 
 @theme {
-  /* Custom Colors */
   --color-primary-50: #eff6ff;
   --color-primary-500: #3b82f6;
   --color-primary-600: #2563eb;
   --color-blue-500: #3b82f6;
   --color-blue-600: #2563eb;
 
-  /* Custom Animations */
   --animate-bounce-slow: bounce-slow 2s infinite;
   --animate-pulse-slow: pulse-slow 3s infinite;
 
-  /* Animation Delays */
   --animate-delay-150: 150ms;
   --animate-delay-300: 300ms;
 }
@@ -134,7 +130,6 @@
   }
 
   .send-button {
-    /* position: absolute; */
     bottom: 0.5rem;
     right: 0.5rem;
     padding: 0.5rem;
@@ -278,7 +273,6 @@
     justify-content: center;
   }
 
-  /* Scrollbar Styles */
   .chat-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: rgb(156 163 175 / 0.5) transparent;
@@ -324,7 +318,6 @@
     display: none;
   }
 
-  /* Responsive utilities */
   .max-w-xs {
     max-width: 20rem;
   }
@@ -360,7 +353,6 @@
   }
 }
 
-/* Custom Keyframes */
 @keyframes bounce-slow {
   0%,
   100% {
@@ -395,7 +387,6 @@
   }
 }
 
-/* Message content formatting */
 .message-content {
   line-height: 1.5;
 }
@@ -408,7 +399,6 @@
   margin-bottom: 0;
 }
 
-/* Weather data specific styling */
 .weather-item {
   display: flex;
   align-items: center;
@@ -421,7 +411,6 @@
   color: var(--color-blue-500);
 }
 
-/* Improve message bubble spacing */
 .message-bubble {
   padding: var(--spacing-4);
   border-radius: var(--radius-2xl);
@@ -458,7 +447,6 @@
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Responsive message width */
 @media (min-width: 640px) {
   .message-bubble {
     max-width: 28rem;

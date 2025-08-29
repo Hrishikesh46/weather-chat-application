@@ -1,4 +1,3 @@
-// src/hooks/useChat.js - Simplified version without localStorage
 import { useState, useCallback, useRef } from 'react';
 import { createWeatherRequest, sendWeatherMessage } from '../utils/api';
 
@@ -32,7 +31,6 @@ export const useChat = () => {
         status: 'streaming',
       };
 
-      // Add both messages at once
       setMessages((prev) => [...prev, userMessage, assistantMessage]);
 
       setIsLoading(true);

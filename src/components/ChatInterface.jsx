@@ -29,13 +29,11 @@ export const ChatInterface = () => {
   }, [activeMessages]);
 
   const handleSendMessage = (content) => {
-    // Always call sendMessage - thread creation will be handled in context
     sendMessage(content);
   };
 
   const renderMainContent = () => {
     if (activeThreadId && activeMessages.length > 0) {
-      // Show messages if we have an active thread with messages
       return (
         <>
           {activeMessages.map((message, index) => (
@@ -45,7 +43,6 @@ export const ChatInterface = () => {
       );
     }
 
-    // Show welcome screen (whether we have threads or not)
     return (
       <div className="flex flex-col items-center justify-center h-full text-center">
         <div className="text-6xl mb-6 animate-bounce">🌤️</div>
@@ -95,7 +92,6 @@ export const ChatInterface = () => {
           <h1 className="text-lg font-semibold text-gray-800">Weather Chat</h1>
         </div>
 
-        {/* Show header only if we have an active thread */}
         {activeThreadId && (
           <ChatHeader
             onClear={() => clearThread(activeThreadId)}
@@ -111,14 +107,12 @@ export const ChatInterface = () => {
           />
         )}
 
-        {/* Messages Area - Always visible */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
           {renderMainContent()}
           {error && <ErrorMessage message={error} />}
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input - Always visible */}
         <MessageInput
           onSendMessage={handleSendMessage}
           disabled={isLoading}
