@@ -44,11 +44,11 @@ export const MessageBubble = ({ message }) => {
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
       <div className="flex items-start space-x-3 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
-        {!isUser && (
+        {/* {!isUser && (
           <div className="avatar avatar--sm avatar--bot">
             <Bot className="w-5 h-5 text-white" />
           </div>
-        )}
+        )} */}
 
         <div className={`relative group ${isUser ? 'order-last' : ''}`}>
           <div
@@ -94,11 +94,11 @@ export const MessageBubble = ({ message }) => {
           </div>
         </div>
 
-        {isUser && (
+        {/* {isUser && (
           <div className="avatar avatar--sm avatar--user">
             <User className="w-5 h-5 text-white" />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
